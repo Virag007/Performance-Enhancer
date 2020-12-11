@@ -1,5 +1,18 @@
 import os
 from colorama import Fore, Style
+import sys
+
+OS_NAME = sys.platform
+
+if 'win' in OS_NAME:
+	if not os.path.exists('Activity'):
+		os.makedirs('Activity')
+		PATH = os.getcwd() + '\\Activity\\'
+
+else:
+	if not os.path.exists('Activity'):
+		os.makedirs('Activity')
+		PATH = os.getcwd() + '/Activity/'
 
 def banner():
 	print(Fore.RED)
@@ -13,10 +26,10 @@ def menu():
 	print('1. Compete with yourself')
 	print('2. Compete with your friend')
 	print('3. Exit')
-	
+
 	while(choice != 3):
 		if(choice == 1):
-			print('Com')
+			print('Set Challenge Days')
 			break
 		elif(choice == 2):
 			print('com1')
