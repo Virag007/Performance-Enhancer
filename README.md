@@ -1,6 +1,6 @@
 # Performance-Enhancer
 
-![Track](https://img.shields.io/badge/Track-Progress-%23ff4da6)
+[![Track](https://img.shields.io/badge/Track-Progress-%23ff4da6)](https://github.com/Virag007/Performance-Enhancer/releases)
 [![Contributions](https://img.shields.io/badge/Contributions-Welcome-4DFF4D)](https://github.com/Virag007/Performance-Enhancer/issues)
 [![Pull Request](https://img.shields.io/badge/PRs-Welcome-ff471a)](hhttps://github.com/Virag007/Performance-Enhancer/pulls)
 [![MIT license](https://img.shields.io/badge/Licence-MIT-ff3399)](https://lbesson.mit-license.org/)
