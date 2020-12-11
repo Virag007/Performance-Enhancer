@@ -13,6 +13,7 @@ import os
 from colorama import Fore, Style
 import sys
 import argparse
+import json
 
 OS_NAME = sys.platform
 PATH = None
@@ -48,16 +49,17 @@ def usage():
 def create_template(attrib):
 	attrib_dict = {}
 	participants_dict = {}
-	print(attrib)
 
+	#Converting the list into dictionary data structure
 	for attributes in range(1, len(attrib)):
 		attrib_dict[attrib[attributes]] = 0
 
 	for participants in attrib[0]:
 		participants_dict[participants] = attrib_dict
 
-	print(participants_dict)
-
+	#Write it to JSON file
+	with open(PATH + 'template.json', 'w') as outfile:
+		json.dump(participants_dict, outfile)
 
 
 def menu():
