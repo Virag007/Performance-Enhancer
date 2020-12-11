@@ -29,6 +29,7 @@ else:
 		os.makedirs('Activity')
 	PATH = os.getcwd() + '/Activity/'
 
+
 #Defining the banner
 def banner():
 	print(Fore.RED)
@@ -39,6 +40,7 @@ def banner():
 	print('\033[1m' + '└──────────────────────────────────────┘' + '\033[0m')
 	print('\033[1m' + '\n[*] Starting Performance Enhancer modules...\n' + '\033[0m')
 
+
 #Defining the usage help
 def usage():
 	parser = argparse.ArgumentParser(description = """Title: Performance Enhancer and Tracker
@@ -48,6 +50,7 @@ def usage():
 
 	parser.add_argument('--version', action = 'version', version = '%(prog)s v1.0 (Beta)', help = 'Shows the version information and exit')
 	args = parser.parse_args()
+
 
 #Creating the template of attributes
 def create_template(attrib):
@@ -66,6 +69,7 @@ def create_template(attrib):
 		json.dump(participants_dict, outfile)
 
 	set_threshold()
+
 
 #Setting the threshold
 def set_threshold():
@@ -86,6 +90,40 @@ def set_threshold():
 	
 	with open(PATH + 'threshold.json', 'w') as outfile:
 		json.dump(threshold_dict, outfile)
+
+	set_tracks()
+
+
+#Set your tracks
+def set_tracks():
+	template_file = open(PATH + 'template.json', 'r')
+	template_data = json.load(template_file)
+	template_file.close()
+
+	threshold_file = open(PATH + 'threshold.json', 'r')
+	threshold_data = json.load(threshold_file)
+	threshold_file.close()
+
+	keys = list(template_data)
+	keys.pop()
+
+	track_dict = {}
+	for participants in keys:
+		attrib_dict = {}
+		print(f'Enter your today track {participants}: ')
+		for attributes in template_data[participants]:
+			if(attributes == 'NumberOfDays'):
+				attrib_dict[attributes] = threshold_data['Threshold']['NumberOfDays']
+				continue
+			print(attributes + ': ', end = '')
+			attrib_dict[attributes] = int(input())
+
+		track_dict[participants] = attrib_dict
+
+	print(track_dict)
+	with open(PATH + 'activity.json', 'a+') as outfile:
+		json.dump(track_dict, outfile)
+
 
 #Menu-Driven program
 def menu():
@@ -108,6 +146,7 @@ def menu():
 				print('Name your attributes--')
 				attrib = []
 				attrib.append(participants)
+				attrib.append('NumberOfDays')
 
 				termination = ''
 				while(termination.lower() != 'exit'):
@@ -129,6 +168,7 @@ def menu():
 				print('Name your attributes--')
 				attrib = []
 				attrib.append(participants)
+				attrib.append('NumberOfDays')
 
 				termination = ''
 				while(termination.lower() != 'exit'):
@@ -148,12 +188,9 @@ def menu():
 				break
 
 	else:
-		if not os.path.exists(PATH + 'activity.json'):
-			set_threshold()
-
-		else:
-			print('File exists')
+		set_tracks()
 	
+
 #Main function
 def main():
 	usage()
