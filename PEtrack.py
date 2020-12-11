@@ -18,6 +18,7 @@ import json
 OS_NAME = sys.platform
 PATH = None
 
+#Checking the platform and create the required folder correspondigly if not exist
 if 'win' in OS_NAME:
 	if not os.path.exists('Activity'):
 		os.makedirs('Activity')
@@ -28,6 +29,7 @@ else:
 		os.makedirs('Activity')
 	PATH = os.getcwd() + '/Activity/'
 
+#Defining the banner
 def banner():
 	print(Fore.RED)
 	os.system('figlet -f smslant PE-Tracker')
@@ -37,6 +39,7 @@ def banner():
 	print('\033[1m' + '└──────────────────────────────────────┘' + '\033[0m')
 	print('\033[1m' + '\n[*] Starting Performance Enhancer modules...\n' + '\033[0m')
 
+#Defining the usage help
 def usage():
 	parser = argparse.ArgumentParser(description = """Title: Performance Enhancer and Tracker
 		\nAuthor: Parag Thakur (aka Virag)
@@ -46,6 +49,7 @@ def usage():
 	parser.add_argument('--version', action = 'version', version = '%(prog)s v1.0 (Beta)', help = 'Shows the version information and exit')
 	args = parser.parse_args()
 
+#Creating the template of attributes
 def create_template(attrib):
 	attrib_dict = {}
 	participants_dict = {}
@@ -61,7 +65,7 @@ def create_template(attrib):
 	with open(PATH + 'template.json', 'w') as outfile:
 		json.dump(participants_dict, outfile)
 
-
+#Menu-Driven program
 def menu():
 	if not os.path.exists(PATH + 'template.json'):
 		print('1. Compete with yourself')
@@ -124,7 +128,7 @@ def menu():
 	else:
 		print("Adding existing")
 	
-
+#Main function
 def main():
 	usage()
 	banner()
