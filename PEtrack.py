@@ -45,6 +45,21 @@ def usage():
 	parser.add_argument('--version', action = 'version', version = '%(prog)s v1.0 (Beta)', help = 'Shows the version information and exit')
 	args = parser.parse_args()
 
+def create_template(attrib):
+	attrib_dict = {}
+	participants_dict = {}
+	print(attrib)
+
+	for attributes in range(1, len(attrib)):
+		attrib_dict[attrib[attributes]] = 0
+
+	for participants in attrib[0]:
+		participants_dict[participants] = attrib_dict
+
+	print(participants_dict)
+
+
+
 def menu():
 	if not os.path.exists(PATH + 'template.json'):
 		print('1. Compete with yourself')
@@ -57,16 +72,43 @@ def menu():
 
 		while(choice != 3):
 			if(choice == 1):
+				participants = []
 				your_name = input('What\'s your name: ')
+				participants.append(your_name)
+				participants.append('Threshold')
 				print('Create your template\n')
 				print('Name your attributes--')
 				attrib = []
+				attrib.append(participants)
+
+				termination = ''
+				while(termination.lower() != 'exit'):
+					termination = input()
+					attrib.append(termination)
+
+				attrib.pop()
+				create_template(attrib)
 				break
 
 			elif(choice == 2):
+				participants = []
 				your_name = input('What\'s your name: ')
+				participants.append(your_name)
 				friend_name = input('What\'s your friend name: ')
+				participants.append(friend_name)
+				participants.append('Threshold')
 				print('Create your template\n')
+				print('Name your attributes--')
+				attrib = []
+				attrib.append(participants)
+
+				termination = ''
+				while(termination.lower() != 'exit'):
+					termination = input()
+					attrib.append(termination)
+
+				attrib.pop()
+				create_template(attrib)
 				break
 
 			elif(choice == 3):
