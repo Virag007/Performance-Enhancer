@@ -1,4 +1,4 @@
-# Performance-Enhancer
+# Performance Enhancer & Tracker (PET)
 
 [![Track](https://img.shields.io/badge/Track-Progress-%23ff4da6)](https://github.com/Virag007/Performance-Enhancer/releases)
 [![Contributions](https://img.shields.io/badge/Contributions-Welcome-4DFF4D)](https://github.com/Virag007/Performance-Enhancer/issues)
