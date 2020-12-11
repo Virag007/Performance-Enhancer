@@ -44,7 +44,7 @@ def usage():
 	parser = argparse.ArgumentParser(description = """Title: Performance Enhancer and Tracker
 		\nAuthor: Parag Thakur (aka Virag)
 		\nTwitter Handle: @_virag007
-		\nDescription: It is a self-competitive CLI tool written in python that will enhance your performance by keeping track of the threshold you set. You can also add your competitor with whom you want to compete. It will generate weekly and monthly leaderboards as well. You can take a challenge of (say 30 days), set your threshold, and start tracking your daily progress. By the end of your resolution, you\'ll see a better you (mark it).This is the help window""", formatter_class = argparse.RawTextHelpFormatter, usage = 'use "%(prog)s --help" for more information')
+		\nDescription: It is a self-competitive CLI tool written in python that will enhance your performance by keeping track of the threshold you set. You can also add your competitor with whom you want to compete. It will generate weekly and monthly leaderboards as well. You can take a challenge of (say 30 days), set your threshold, and start tracking your daily progress. By the end of your resolution, you\'ll see a better you (mark it)""", formatter_class = argparse.RawTextHelpFormatter, usage = 'use "%(prog)s --help" for more information')
 
 	parser.add_argument('--version', action = 'version', version = '%(prog)s v1.0 (Beta)', help = 'Shows the version information and exit')
 	args = parser.parse_args()
@@ -64,6 +64,28 @@ def create_template(attrib):
 	#Write it to JSON file
 	with open(PATH + 'template.json', 'w') as outfile:
 		json.dump(participants_dict, outfile)
+
+	set_threshold()
+
+#Setting the threshold
+def set_threshold():
+	json_file = open(PATH + 'template.json', 'r')
+	json_data = json.load(json_file)
+	json_file.close()
+
+	keys = list(json_data)
+	print('Enter the thresholds: ')
+
+	attrib_dict = {}
+	threshold_dict = {}
+	for attributes in json_data[keys[-1]]:
+		print(attributes + ': ', end = '')
+		attrib_dict[attributes] = int(input())
+
+	threshold_dict['Threshold'] = attrib_dict
+	
+	with open(PATH + 'threshold.json', 'w') as outfile:
+		json.dump(threshold_dict, outfile)
 
 #Menu-Driven program
 def menu():
@@ -126,7 +148,11 @@ def menu():
 				break
 
 	else:
-		print("Adding existing")
+		if not os.path.exists(PATH + 'activity.json'):
+			set_threshold()
+
+		else:
+			print('File exists')
 	
 #Main function
 def main():
