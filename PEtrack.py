@@ -120,9 +120,43 @@ def set_tracks():
 
 		track_dict[participants] = attrib_dict
 
-	print(track_dict)
 	with open(PATH + 'activity.json', 'a+') as outfile:
 		json.dump(track_dict, outfile)
+
+
+	option = 'Y'
+	print('Do you want to see entered stats (Y/N): ', end = '')
+	option = input()
+
+	if(option.lower() == 'y'):
+		display(track_dict, threshold_data)
+
+
+#Display stats to terminal
+def display(track_dict, threshold_data):
+	threshold_list = list(threshold_data)
+	track_list = list(track_dict)
+	dash = '─' * 28
+
+	print('┌' + dash + '┐')
+	print('\033[1m' + '{:^30}'.format(threshold_list[0]) + '\033[0m')
+	print('├' + dash + '┤')
+
+	for attributes in threshold_data[threshold_list[0]]:
+		print('{:^30}'.format(attributes + ': ' + str(threshold_data[threshold_list[0]][attributes])))
+
+	print('└' + dash + '┘')
+
+
+	for participants in track_list:
+		print('┌' + dash + '┐')
+		print('\033[1m' + '{:^30}'.format(participants) + '\033[0m')
+		print('├' + dash + '┤')
+
+		for attributes in track_dict[participants]:
+			print('{:^30}'.format(attributes + ': ' + str(track_dict[participants][attributes])))
+
+		print('└' + dash + '┘')
 
 
 #Menu-Driven program
