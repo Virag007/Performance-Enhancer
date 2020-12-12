@@ -1,1 +1,8 @@
-{"Threshold": {"NumberOfDays": 30, "PentesterLab": 10, "HacktheBox": 1, "Article": 1}}
+{
+  "Threshold": {
+    "NumberOfDays": 30,
+    "PentesterLab": 10,
+    "HacktheBox": 1,
+    "Article": 2
+  }
+}
