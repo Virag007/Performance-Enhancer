@@ -48,8 +48,10 @@ def usage():
 		\nTwitter Handle: @_virag007
 		\nDescription: It is a self-competitive CLI tool written in python that will enhance your performance by keeping track of the threshold you set. You can also add your competitor with whom you want to compete. It will generate weekly and monthly leaderboards as well. You can take a challenge of (say 30 days), set your threshold, and start tracking your daily progress. By the end of your resolution, you\'ll see a better you (mark it)""", formatter_class = argparse.RawTextHelpFormatter, usage = 'use "%(prog)s --help" for more information')
 
+	parser.add_argument('-f', '--flush', action = 'store_true', help = 'Wipe out the previous activities and exit')
 	parser.add_argument('--version', action = 'version', version = '%(prog)s v1.0 (Beta)', help = 'Shows the version information and exit')
 	args = parser.parse_args()
+	return args
 
 
 #Creating the template of attributes
@@ -244,15 +246,15 @@ def menu():
 		if(option.lower() == 'y'):
 			threshold_data = fetch_threshold()
 			activity_data = fetch_activity()
-			print(activity_data)
-			"""display(track_dict, threshold_data)
+			
+			display(activity_data[len(activity_data) - 1], threshold_data)
 
 			print('Do you want to enter your todays stat (Y/N): ', end = '')
 			today_stat = input()
 			if(today_stat.lower() == 'y'):
 				set_tracks()
 			else:
-				print('Good Day')"""
+				print('Good Day')
 
 		else:
 			print('Do you want to enter your todays stat (Y/N): ', end = '')
@@ -265,7 +267,12 @@ def menu():
 
 #Main function
 def main():
-	usage()
+	args = usage()
+	if args.flush:
+		os.system('rm -r ' + PATH + '*')
+		print('All activity files flushed.\n')
+		return
+
 	banner()
 	menu()
 
