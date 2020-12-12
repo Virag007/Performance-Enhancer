@@ -66,43 +66,36 @@ def create_template(attrib):
 
 	#Write it to JSON file
 	with open(PATH + 'template.json', 'w') as outfile:
-		json.dump(participants_dict, outfile)
+		json.dump(participants_dict, outfile, indent = 2)
 
 	set_threshold()
 
 
 #Setting the threshold
 def set_threshold():
-	json_file = open(PATH + 'template.json', 'r')
-	json_data = json.load(json_file)
-	json_file.close()
+	template_data = fetch_template()
 
-	keys = list(json_data)
-	print('Enter the thresholds: ')
+	keys = list(template_data)
+	print('\nEnter the thresholds: ')
 
 	attrib_dict = {}
 	threshold_dict = {}
-	for attributes in json_data[keys[-1]]:
+	for attributes in template_data[keys[-1]]:
 		print(attributes + ': ', end = '')
 		attrib_dict[attributes] = int(input())
 
 	threshold_dict['Threshold'] = attrib_dict
 	
 	with open(PATH + 'threshold.json', 'w') as outfile:
-		json.dump(threshold_dict, outfile)
+		json.dump(threshold_dict, outfile, indent = 2)
 
 	set_tracks()
 
 
 #Set your tracks
 def set_tracks():
-	template_file = open(PATH + 'template.json', 'r')
-	template_data = json.load(template_file)
-	template_file.close()
-
-	threshold_file = open(PATH + 'threshold.json', 'r')
-	threshold_data = json.load(threshold_file)
-	threshold_file.close()
+	template_data = fetch_template()
+	threshold_data = fetch_threshold()
 
 	keys = list(template_data)
 	keys.pop()
@@ -110,7 +103,7 @@ def set_tracks():
 	track_dict = {}
 	for participants in keys:
 		attrib_dict = {}
-		print(f'Enter your today track {participants}: ')
+		print(f'\nEnter your today track {participants}: ')
 		for attributes in template_data[participants]:
 			if(attributes == 'NumberOfDays'):
 				attrib_dict[attributes] = threshold_data['Threshold']['NumberOfDays']
@@ -122,15 +115,38 @@ def set_tracks():
 
 	with open(PATH + 'activity.json', 'a+') as outfile:
 		json.dump(track_dict, outfile)
+		outfile.write('\n')
 
 
-	option = 'Y'
-	print('Do you want to see entered stats (Y/N): ', end = '')
+	print('\nDo you want to see entered stats (Y/N): ', end = '')
 	option = input()
 
 	if(option.lower() == 'y'):
 		display(track_dict, threshold_data)
 
+
+#Fetch Templete Data
+def fetch_template():
+	template_file = open(PATH + 'template.json', 'r')
+	template_data = json.load(template_file)
+	template_file.close()
+	return template_data
+
+#Fetch Threshold Data
+def fetch_threshold():
+	threshold_file = open(PATH + 'threshold.json', 'r')
+	threshold_data = json.load(threshold_file)
+	threshold_file.close()
+	return threshold_data
+
+#Fetch Activity Data
+def fetch_activity():
+	activityList = []
+	for jsonObj in open(PATH + 'activity.json', 'r'):
+		activityDict = json.loads(jsonObj)
+		activityList.append(activityDict)
+	
+	return activityList
 
 #Display stats to terminal
 def display(track_dict, threshold_data):
@@ -138,7 +154,7 @@ def display(track_dict, threshold_data):
 	track_list = list(track_dict)
 	dash = '─' * 28
 
-	print('┌' + dash + '┐')
+	print('\n┌' + dash + '┐')
 	print('\033[1m' + '{:^30}'.format(threshold_list[0]) + '\033[0m')
 	print('├' + dash + '┤')
 
@@ -222,7 +238,29 @@ def menu():
 				break
 
 	else:
-		set_tracks()
+		print('Do you want to see last day stats (Y/N): ', end = '')
+		option = input()
+		
+		if(option.lower() == 'y'):
+			threshold_data = fetch_threshold()
+			activity_data = fetch_activity()
+			print(activity_data)
+			"""display(track_dict, threshold_data)
+
+			print('Do you want to enter your todays stat (Y/N): ', end = '')
+			today_stat = input()
+			if(today_stat.lower() == 'y'):
+				set_tracks()
+			else:
+				print('Good Day')"""
+
+		else:
+			print('Do you want to enter your todays stat (Y/N): ', end = '')
+			today_stat = input()
+			if(today_stat.lower() == 'y'):
+				set_tracks()
+			else:
+				print('Good Day')
 	
 
 #Main function
