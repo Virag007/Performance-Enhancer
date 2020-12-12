@@ -14,9 +14,11 @@ from colorama import Fore, Style
 import sys
 import argparse
 import json
+import datetime
 
 OS_NAME = sys.platform
 PATH = None
+DATE = datetime.datetime.now()
 
 #Checking the platform and create the required folder correspondigly if not exist
 if 'win' in OS_NAME:
@@ -77,44 +79,71 @@ def create_template(attrib):
 def set_threshold():
 	template_data = fetch_template()
 
+	#Storing the participants into list
 	keys = list(template_data)
 	print('\nEnter the thresholds: ')
 
 	attrib_dict = {}
 	threshold_dict = {}
+
+	#Setting the threshold values
 	for attributes in template_data[keys[-1]]:
-		print(attributes + ': ', end = '')
-		attrib_dict[attributes] = int(input())
+		if(attributes == 'Date'):
+			attrib_dict[attributes] = DATE.strftime("%a, %d-%b-%Y")
+			continue
+
+		elif(attributes == 'Time'):
+			attrib_dict[attributes] = DATE.strftime("%X %P")
+			continue
+
+		else:
+			print(attributes + ': ', end = '')
+			attrib_dict[attributes] = int(input())
 
 	threshold_dict['Threshold'] = attrib_dict
 	
+	#Writing the threshold key value pairs into json object file
 	with open(PATH + 'threshold.json', 'w') as outfile:
 		json.dump(threshold_dict, outfile, indent = 2)
 
-	set_tracks()
+	set_tracks(threshold_dict['Threshold']['NumberOfDays'] - 1)
 
 
 #Set your tracks
-def set_tracks():
+def set_tracks(NOD):
 	template_data = fetch_template()
 	threshold_data = fetch_threshold()
 
+	#Storing the participants into list and deleting the last value i.e., Threshold
 	keys = list(template_data)
 	keys.pop()
 
 	track_dict = {}
+
+	#Setting the daily stats
 	for participants in keys:
 		attrib_dict = {}
-		print(f'\nEnter your today track {participants}: ')
+		print('\nEnter your Day-' + str(threshold_data['Threshold']['NumberOfDays'] - NOD) + ' track ' + participants + ': ')
 		for attributes in template_data[participants]:
 			if(attributes == 'NumberOfDays'):
-				attrib_dict[attributes] = threshold_data['Threshold']['NumberOfDays']
+				attrib_dict[attributes] = NOD
 				continue
-			print(attributes + ': ', end = '')
-			attrib_dict[attributes] = int(input())
+
+			elif(attributes == 'Date'):
+				attrib_dict[attributes] = DATE.strftime("%a, %d-%b-%Y")
+				continue
+
+			elif(attributes == 'Time'):
+				attrib_dict[attributes] = DATE.strftime("%X %P")
+				continue
+
+			else:
+				print(attributes + ': ', end = '')
+				attrib_dict[attributes] = int(input())
 
 		track_dict[participants] = attrib_dict
 
+	#Writing the activity data to the Json file
 	with open(PATH + 'activity.json', 'a+') as outfile:
 		json.dump(track_dict, outfile)
 		outfile.write('\n')
@@ -123,6 +152,7 @@ def set_tracks():
 	print('\nDo you want to see entered stats (Y/N): ', end = '')
 	option = input()
 
+	#Displaying the stats to the terminal
 	if(option.lower() == 'y'):
 		display(track_dict, threshold_data)
 
@@ -144,6 +174,8 @@ def fetch_threshold():
 #Fetch Activity Data
 def fetch_activity():
 	activityList = []
+
+	#Activity file contains multiple Json data object
 	for jsonObj in open(PATH + 'activity.json', 'r'):
 		activityDict = json.loads(jsonObj)
 		activityList.append(activityDict)
@@ -156,6 +188,7 @@ def display(track_dict, threshold_data):
 	track_list = list(track_dict)
 	dash = '─' * 28
 
+	#Displaying the Threshold table to the terminal
 	print('\n┌' + dash + '┐')
 	print('\033[1m' + '{:^30}'.format(threshold_list[0]) + '\033[0m')
 	print('├' + dash + '┤')
@@ -165,7 +198,7 @@ def display(track_dict, threshold_data):
 
 	print('└' + dash + '┘')
 
-
+	#Displaying the participants table to the terminal
 	for participants in track_list:
 		print('┌' + dash + '┐')
 		print('\033[1m' + '{:^30}'.format(participants) + '\033[0m')
@@ -177,6 +210,12 @@ def display(track_dict, threshold_data):
 		print('└' + dash + '┘')
 
 
+#End day statistics build and display to the terminal
+def stats_build():
+	print('Nice Job')
+	#display()
+
+
 #Menu-Driven program
 def menu():
 	if not os.path.exists(PATH + 'template.json'):
@@ -184,85 +223,129 @@ def menu():
 		print('2. Compete with your friend')
 		print('3. Exit')
 
-		print(Fore.GREEN)
-		choice = int(input('Enter your choice: '))
-		print(Style.RESET_ALL)
+		try:
+			print(Fore.GREEN)
+			choice = int(input('Enter your choice: '))
 
-		while(choice != 3):
-			if(choice == 1):
-				participants = []
-				your_name = input('What\'s your name: ')
-				participants.append(your_name)
-				participants.append('Threshold')
-				print('Create your template\n')
-				print('Name your attributes--')
-				attrib = []
-				attrib.append(participants)
-				attrib.append('NumberOfDays')
+			while(choice != 3):
+				if(choice == 1):
+					participants = []
+					your_name = input('What\'s your name: ')
+					participants.append(your_name)
+					participants.append('Threshold')
+					print('Create your template\n')
+					print('Name your attributes--')
 
-				termination = ''
-				while(termination.lower() != 'exit'):
-					termination = input()
-					attrib.append(termination)
+					attrib = []
+					attrib.append(participants)
+					attrib.append('NumberOfDays')
+					attrib.append('Date')
+					attrib.append('Time')
 
-				attrib.pop()
-				create_template(attrib)
-				break
+					termination = ''
+					while(termination.lower() != 'exit'):
+						termination = input()
+						attrib.append(termination)
 
-			elif(choice == 2):
-				participants = []
-				your_name = input('What\'s your name: ')
-				participants.append(your_name)
-				friend_name = input('What\'s your friend name: ')
-				participants.append(friend_name)
-				participants.append('Threshold')
-				print('Create your template\n')
-				print('Name your attributes--')
-				attrib = []
-				attrib.append(participants)
-				attrib.append('NumberOfDays')
+					attrib.pop()
+					create_template(attrib)
+					break
 
-				termination = ''
-				while(termination.lower() != 'exit'):
-					termination = input()
-					attrib.append(termination)
+				elif(choice == 2):
+					participants = []
+					your_name = input('What\'s your name: ')
+					participants.append(your_name)
+					friend_name = input('What\'s your friend name: ')
+					participants.append(friend_name)
+					participants.append('Threshold')
+					print('Create your template\n')
+					print('Name your attributes--')
 
-				attrib.pop()
-				create_template(attrib)
-				break
+					attrib = []
+					attrib.append(participants)
+					attrib.append('NumberOfDays')
+					attrib.append('Date')
+					attrib.append('Time')
 
-			elif(choice == 3):
-				print('Exitting...')
-				break
+					termination = ''
+					while(termination.lower() != 'exit'):
+						termination = input()
+						attrib.append(termination)
 
-			else:
-				print('Enter right choice...')
-				break
+					attrib.pop()
+					create_template(attrib)
+					break
+
+				elif(choice == 3):
+					print('Exitting...')
+					break
+
+				else:
+					print('Enter right choice...')
+					break
+
+		except:
+			print(Style.RESET_ALL)
+			print('Enter only integer value')
 
 	else:
+		threshold_data = fetch_threshold()
+		activity_data = fetch_activity()
+		activity_list = list(activity_data[0])
+		NOD = activity_data[len(activity_data) - 1][activity_list[0]]['NumberOfDays']
 		print('Do you want to see last day stats (Y/N): ', end = '')
 		option = input()
 		
-		if(option.lower() == 'y'):
-			threshold_data = fetch_threshold()
-			activity_data = fetch_activity()
-			
+		if(option.lower() == 'y'):			
 			display(activity_data[len(activity_data) - 1], threshold_data)
 
 			print('Do you want to enter your todays stat (Y/N): ', end = '')
 			today_stat = input()
+
 			if(today_stat.lower() == 'y'):
-				set_tracks()
-			else:
+
+				if(NOD == 0):
+					print('\n\033[1m' + 'Congratulations, You\'ve completed your resolution successfully' + '\033[0m')
+					print('Now you can view your progress')
+					stats_build()
+
+				else:
+					if(activity_data[len(activity_data) - 1][activity_list[0]]['Date'] != DATE.strftime("%a, %d-%b-%Y")):
+						set_tracks(NOD - 1)
+					else:
+						print('\n\033[1m' + 'You have set the stats already for the day.' + '\033[0m')
+
+			elif(today_stat.lower() == 'n'):
 				print('Good Day')
 
-		else:
+			else:
+				print('Choose among Y-(Yes) or N-(No) only')
+
+		elif(option.lower() == 'n'):
 			print('Do you want to enter your todays stat (Y/N): ', end = '')
 			today_stat = input()
+
 			if(today_stat.lower() == 'y'):
-				set_tracks()
-			else:
+
+				if(NOD == 0):
+					print('\n\033[1m' + 'Congratulations, You\'ve completed your resolution successfully' + '\033[0m')
+					print('Now you can view your progress')
+					stats_build()
+
+				else:
+					if(activity_data[0][activity_list[0]]['Date'] != DATE.strftime("%a, %d-%b-%Y")):
+						set_tracks(NOD - 1)
+					else:
+						print('\n\033[1m' + 'You have set the stats already for the day.' + '\033[0m')
+
+			elif(today_stat.lower() == 'n'):
 				print('Good Day')
+
+			else:
+				print('Choose among Y-(Yes) or N-(No) only')
+
+		else:
+			print('Choose among Y-(Yes) or N-(No) only')
 	
 
 #Main function
