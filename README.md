@@ -65,5 +65,5 @@ You have two options given either compete with yourself or with your friend. You
 [<img align="left" alt="v_ir_ag | Instagram" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg" />](https://www.instagram.com/v_ir_ag/)
 [<img align="left" alt="parag888 | Facebook" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/facebook.svg" />](https://www.facebook.com/parag888)
 
-<br />
+<br /><br />
 <img src="http://ForTheBadge.com/images/badges/made-with-python.svg" />
