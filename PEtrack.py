@@ -344,40 +344,40 @@ def stats_build(threshold_data, activity_data):
 	print('├' + dash + '┤')
 
 	if(participantsCount > 1):
-		if((participant_win[0] == participant_win[1]) and (participant_win[0] >= (threshold_data['Threshold']['NumberOfDays']) / participant_win[0])):
+		if((participant_win[0] == participant_win[1]) and (participant_win[0] >= (threshold_data['Threshold']['NumberOfDays']) / 2)):
 			for player in participantsName:
 				stat = player + ' - ' + 'DRAW (Improved)'
 				print('{:^30}'.format(stat))
 			print('└' + dash + '┘')
 
-		elif((participant_win[0] == participant_win[1]) and (participant_win[0] < (threshold_data['Threshold']['NumberOfDays']) / participant_win[0])):
+		elif((participant_win[0] == participant_win[1]) and (participant_win[0] < (threshold_data['Threshold']['NumberOfDays']) / 2)):
 			for player in participantsName:
 				stat = player + ' - ' + 'DRAW (Not Improved)'
 				print('{:^30}'.format(stat))
 			print('└' + dash + '┘')
 
-		elif((participant_win[0] > participant_win[1]) and (participant_win[0] >= (threshold_data['Threshold']['NumberOfDays']) / participant_win[0])):
+		elif((participant_win[0] > participant_win[1]) and (participant_win[0] >= (threshold_data['Threshold']['NumberOfDays']) / 2)):
 			stat1 = participantsName[0] + ' - ' + 'WON (Improved) 🏆'
 			print('{:^30}'.format(stat1))
 			stat2 = participantsName[1] + ' - ' + 'LOOSE'
 			print('{:^30}'.format(stat2))
 			print('└' + dash + '┘')
 
-		elif((participant_win[0] < participant_win[1]) and (participant_win[1] >= (threshold_data['Threshold']['NumberOfDays']) / participant_win[0])):
+		elif((participant_win[0] < participant_win[1]) and (participant_win[1] >= (threshold_data['Threshold']['NumberOfDays']) / 2)):
 			stat1 = participantsName[1] + ' - ' + 'WON (Improved) 🏆'
 			print('{:^30}'.format(stat1))
 			stat2 = participantsName[0] + ' - ' + 'LOOSE'
 			print('{:^30}'.format(stat2))
 			print('└' + dash + '┘')
 
-		elif((participant_win[0] > participant_win[1]) and (participant_win[0] < (threshold_data['Threshold']['NumberOfDays']) / participant_win[0])):
+		elif((participant_win[0] > participant_win[1]) and (participant_win[0] < (threshold_data['Threshold']['NumberOfDays']) / 2)):
 			stat1 = participantsName[0] + ' - ' + 'WON (Not Improved) 🏆'
 			print('{:^30}'.format(stat1))
 			stat2 = participantsName[1] + ' - ' + 'LOOSE'
 			print('{:^30}'.format(stat2))
 			print('└' + dash + '┘')
 
-		elif((participant_win[0] < participant_win[1]) and (participant_win[1] < (threshold_data['Threshold']['NumberOfDays']) / participant_win[0])):
+		elif((participant_win[0] < participant_win[1]) and (participant_win[1] < (threshold_data['Threshold']['NumberOfDays']) / 2)):
 			stat1 = participantsName[1] + ' - ' + 'WON (Not Improved) 🏆'
 			print('{:^30}'.format(stat1))
 			stat2 = participantsName[0] + ' - ' + 'LOOSE'
@@ -388,7 +388,7 @@ def stats_build(threshold_data, activity_data):
 			print()
 
 	else:
-		if((participant_win[0] >= (threshold_data['Threshold']['NumberOfDays']) / participant_win[0])):
+		if((participant_win[0] >= (threshold_data['Threshold']['NumberOfDays']) / 2)):
 			stat = participantsName[0] + ' - ' + '(Improved) 🏆'
 			print('{:^30}'.format(stat))
 			print('└' + dash + '┘')
