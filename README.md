@@ -14,6 +14,7 @@ It is a self-competitive CLI tool that will enhance your performance by keeping 
 ## How to Use?
 
 **Step-01:** ```pip install -r requirements.txt``` or ```pip3 install -r requirements.txt```
+<br />
 **Step-02:** ```python3 PEtrack.py --help```
 
 ```
@@ -25,7 +26,11 @@ Author: Parag Thakur (aka Virag)
 
 Twitter Handle: @_virag007
 
-Description: It is a self-competitive CLI tool written in python that will enhance your performance by keeping track of the threshold you set. You can also add your competitor with whom you want to compete. It will generate weekly and monthly leaderboards as well. You can take a challenge of (say 30 days), set your threshold, and start tracking your daily progress. By the end of your resolution, you'll see a better you (mark it)
+Description: It is a self-competitive CLI tool written in python that will enhance your performance 
+by keeping track of the threshold you set. You can also add your competitor with whom you want to 
+compete. It will generate weekly and monthly leaderboards as well. You can take a challenge of (say 
+30 days), set your threshold, and start tracking your daily progress. By the end of your resolution, 
+you'll see a better you (mark it)
 
 optional arguments:
   -h, --help   show this help message and exit
@@ -61,4 +66,4 @@ You have two options given either compete with yourself or with your friend. You
 [<img align="left" alt="parag888 | Facebook" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/facebook.svg" />](https://www.facebook.com/parag888)
 
 <br />
-[![Python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+[<img src="http://ForTheBadge.com/images/badges/made-with-python.svg" />](https://www.python.org/)
