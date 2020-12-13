@@ -15,6 +15,8 @@ import sys
 import argparse
 import json
 import datetime
+from pyfiglet import Figlet
+import glob
 
 OS_NAME = sys.platform
 PATH = None
@@ -35,9 +37,8 @@ else:
 #Defining the banner
 def banner():
 	print(Fore.RED)
-	print('\033[1m')
-	os.system('figlet -f smslant PE-Tracker')
-	print('\033[0m')
+	design = Figlet(font='smslant')
+	print('\033[1m' + design.renderText('PE-Tracker') + '\033[0m')
 	print(Style.RESET_ALL)
 	print('\033[1m' + '┌──────────────────────────────────────┐' + '\033[0m')
 	print('\033[1m' + '│++++ You are your own rule maker. ++++│' + '\033[0m')
@@ -487,7 +488,9 @@ def menu():
 			if(today_stat.lower() == 'y'):
 
 				if(NOD == 0):
+					print(Fore.YELLOW)
 					print('\n\033[1m' + 'Congratulations, You\'ve completed your resolution successfully' + '\033[0m')
+					print(Style.RESET_ALL)
 					print('Now you can view your progress')
 					stats_build(threshold_data, activity_data)
 
@@ -511,7 +514,9 @@ def menu():
 			if(today_stat.lower() == 'y'):
 
 				if(NOD == 0):
+					print(Fore.YELLOW)
 					print('\n\033[1m' + 'Congratulations, You\'ve completed your resolution successfully' + '\033[0m')
+					print(Style.RESET_ALL)
 					print('Now you can view your progress')
 					stats_build(threshold_data, activity_data)
 
@@ -535,7 +540,10 @@ def menu():
 def main():
 	args = usage()
 	if args.flush:
-		os.system('rm -r ' + PATH + '*')
+		files = glob.glob(PATH + '*')
+		for f in files:
+			os.remove(f)
+		
 		print('All activity files flushed.\n')
 		return
 
