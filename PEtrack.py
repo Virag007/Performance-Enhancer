@@ -35,7 +35,9 @@ else:
 #Defining the banner
 def banner():
 	print(Fore.RED)
+	print('\033[1m')
 	os.system('figlet -f smslant PE-Tracker')
+	print('\033[0m')
 	print(Style.RESET_ALL)
 	print('\033[1m' + '┌──────────────────────────────────────┐' + '\033[0m')
 	print('\033[1m' + '│++++ You are your own rule maker. ++++│' + '\033[0m')
@@ -190,7 +192,9 @@ def display(track_dict, threshold_data):
 
 	#Displaying the Threshold table to the terminal
 	print('\n┌' + dash + '┐')
+	print(Fore.BLUE, end = '')
 	print('\033[1m' + '{:^30}'.format(threshold_list[0]) + '\033[0m')
+	print(Style.RESET_ALL, end = '')
 	print('├' + dash + '┤')
 
 	for attributes in threshold_data[threshold_list[0]]:
@@ -200,8 +204,15 @@ def display(track_dict, threshold_data):
 
 	#Displaying the participants table to the terminal
 	for participants in track_list:
+		day = track_dict[participants]['NumberOfDays']
+		threshold_day = threshold_data['Threshold']['NumberOfDays']
+		stat = participants + ' (Day-' + str(threshold_day - day) + ')'
+
+
 		print('┌' + dash + '┐')
-		print('\033[1m' + '{:^30}'.format(participants) + '\033[0m')
+		print(Fore.BLUE, end = '')
+		print('\033[1m' + '{:^30}'.format(stat) + '\033[0m')
+		print(Style.RESET_ALL, end = '')
 		print('├' + dash + '┤')
 
 		for attributes in track_dict[participants]:
@@ -211,9 +222,179 @@ def display(track_dict, threshold_data):
 
 
 #End day statistics build and display to the terminal
-def stats_build():
-	print('Nice Job')
-	#display()
+def stats_build(threshold_data, activity_data):
+	participantsName = list(fetch_template())
+	participantsName.pop()
+	participantsCount = len(list(fetch_template())) - 1	
+
+	if(participantsCount > 1):
+		member = []
+		for loop in range(0, len(activity_data)):
+			mem = []
+			for participants in range(0, len(activity_data[0])):
+				ActivityAttributeName = activity_data[loop][list(activity_data[loop])[participants]]
+
+				if(participants % 2 == 0):
+					win_count1 = 0
+					attribute_count1 = 0
+					for attributes in ActivityAttributeName:
+						attribute_count1 = attribute_count1 + 1
+						if(attributes == 'NumberOfDays'):
+							continue
+
+						elif(attributes == 'Date'):
+							continue
+
+						elif(attributes == 'Time'):
+							continue
+
+						else:
+							if(threshold_data['Threshold'][attributes] <= ActivityAttributeName[attributes]):
+								win_count1 = win_count1 + 1
+								
+					if(win_count1 == (attribute_count1 - 3)):
+						mem.append('Won')
+					else:
+						mem.append('Loose')
+
+				else:
+					win_count2 = 0
+					attribute_count2 = 0
+					for attributes in ActivityAttributeName:
+						attribute_count2 = attribute_count2 + 1
+						if(attributes == 'NumberOfDays'):
+							continue
+
+						elif(attributes == 'Date'):
+							continue
+
+						elif(attributes == 'Time'):
+							continue
+
+						else:
+							if(threshold_data['Threshold'][attributes] <= ActivityAttributeName[attributes]):
+								win_count2 = win_count2 + 1
+
+					if(win_count2 == (attribute_count2 - 3)):
+						mem.append('Won')
+					else:
+						mem.append('Loose')
+
+			member.append(mem)
+
+	else:
+		member = []
+		for data in activity_data:
+			mem = []
+			ActivityAttributeName = data[list(data)[0]]
+			win_count = 0
+			attribute_count = 0
+			for attributes in ActivityAttributeName:
+				attribute_count = attribute_count + 1
+				if(attributes == 'NumberOfDays'):
+					continue
+
+				elif(attributes == 'Date'):
+					continue
+
+				elif(attributes == 'Time'):
+					continue
+
+				else:
+					if(threshold_data['Threshold'][attributes] <= ActivityAttributeName[attributes]):
+						win_count = win_count + 1
+
+			if(win_count == (attribute_count - 3)):
+				mem.append('Won')
+			else:
+				mem.append('Loose')
+
+			member.append(mem)
+
+	dash = '─' * 28
+
+	print()
+	participant_win = []
+	for name in range(0, len(participantsName)):
+		title = participantsName[name] + ' STATS'
+		print('┌' + dash + '┐')
+		print(Fore.BLUE, end = '')
+		print('\033[1m' + '{:^30}'.format(title) + '\033[0m')
+		print(Style.RESET_ALL, end = '')
+		print('├' + dash + '┤')
+
+		count = 0
+		for c in range(0, len(member)):
+			stat = 'Day-' + str(c + 1) + ': ' + member[c][name]
+			if(member[c][name] == 'Won'):
+				count = count + 1
+
+			print('{:^30}'.format(stat))
+
+		participant_win.append(count)
+		print('└' + dash + '┘')
+
+	print()
+	title = 'LEADERBOARD'
+	print('┌' + dash + '┐')
+	print(Fore.GREEN, end = '')
+	print('\033[1m' + '{:^30}'.format(title) + '\033[0m')
+	print(Style.RESET_ALL, end = '')
+	print('├' + dash + '┤')
+
+	if(participantsCount > 1):
+		if((participant_win[0] == participant_win[1]) and (participant_win[0] >= (threshold_data['Threshold']['NumberOfDays']) / participant_win[0])):
+			for player in participantsName:
+				stat = player + ' - ' + 'DRAW (Improved)'
+				print('{:^30}'.format(stat))
+			print('└' + dash + '┘')
+
+		elif((participant_win[0] == participant_win[1]) and (participant_win[0] < (threshold_data['Threshold']['NumberOfDays']) / participant_win[0])):
+			for player in participantsName:
+				stat = player + ' - ' + 'DRAW (Not Improved)'
+				print('{:^30}'.format(stat))
+			print('└' + dash + '┘')
+
+		elif((participant_win[0] > participant_win[1]) and (participant_win[0] >= (threshold_data['Threshold']['NumberOfDays']) / participant_win[0])):
+			stat1 = participantsName[0] + ' - ' + 'WON (Improved) 🏆'
+			print('{:^30}'.format(stat1))
+			stat2 = participantsName[1] + ' - ' + 'LOOSE'
+			print('{:^30}'.format(stat2))
+			print('└' + dash + '┘')
+
+		elif((participant_win[0] < participant_win[1]) and (participant_win[1] >= (threshold_data['Threshold']['NumberOfDays']) / participant_win[0])):
+			stat1 = participantsName[1] + ' - ' + 'WON (Improved) 🏆'
+			print('{:^30}'.format(stat1))
+			stat2 = participantsName[0] + ' - ' + 'LOOSE'
+			print('{:^30}'.format(stat2))
+			print('└' + dash + '┘')
+
+		elif((participant_win[0] > participant_win[1]) and (participant_win[0] < (threshold_data['Threshold']['NumberOfDays']) / participant_win[0])):
+			stat1 = participantsName[0] + ' - ' + 'WON (Not Improved) 🏆'
+			print('{:^30}'.format(stat1))
+			stat2 = participantsName[1] + ' - ' + 'LOOSE'
+			print('{:^30}'.format(stat2))
+			print('└' + dash + '┘')
+
+		elif((participant_win[0] < participant_win[1]) and (participant_win[1] < (threshold_data['Threshold']['NumberOfDays']) / participant_win[0])):
+			stat1 = participantsName[1] + ' - ' + 'WON (Not Improved) 🏆'
+			print('{:^30}'.format(stat1))
+			stat2 = participantsName[0] + ' - ' + 'LOOSE'
+			print('{:^30}'.format(stat2))
+			print('└' + dash + '┘')
+
+		else:
+			print()
+
+	else:
+		if((participant_win[0] >= (threshold_data['Threshold']['NumberOfDays']) / participant_win[0])):
+			stat = participantsName[0] + ' - ' + '(Improved) 🏆'
+			print('{:^30}'.format(stat))
+			print('└' + dash + '┘')
+		else:
+			stat = participantsName[0] + ' - ' + '(Not Improved)'
+			print('{:^30}'.format(stat))
+			print('└' + dash + '┘')
 
 
 #Menu-Driven program
@@ -226,6 +407,7 @@ def menu():
 		try:
 			print(Fore.GREEN)
 			choice = int(input('Enter your choice: '))
+			print(Style.RESET_ALL)
 
 			while(choice != 3):
 				if(choice == 1):
@@ -291,14 +473,14 @@ def menu():
 	else:
 		threshold_data = fetch_threshold()
 		activity_data = fetch_activity()
-		activity_list = list(activity_data[0])
-		NOD = activity_data[len(activity_data) - 1][activity_list[0]]['NumberOfDays']
+		previous_record = activity_data[len(activity_data) - 1]
+		
+		NOD = previous_record[list(previous_record)[0]]['NumberOfDays']
 		print('Do you want to see last day stats (Y/N): ', end = '')
 		option = input()
 		
 		if(option.lower() == 'y'):			
-			display(activity_data[len(activity_data) - 1], threshold_data)
-
+			display(previous_record, threshold_data)
 			print('Do you want to enter your todays stat (Y/N): ', end = '')
 			today_stat = input()
 
@@ -307,13 +489,14 @@ def menu():
 				if(NOD == 0):
 					print('\n\033[1m' + 'Congratulations, You\'ve completed your resolution successfully' + '\033[0m')
 					print('Now you can view your progress')
-					stats_build()
+					stats_build(threshold_data, activity_data)
 
 				else:
-					if(activity_data[len(activity_data) - 1][activity_list[0]]['Date'] != DATE.strftime("%a, %d-%b-%Y")):
+					if(previous_record[list(previous_record)[0]]['Date'] != DATE.strftime("%a, %d-%b-%Y")):
 						set_tracks(NOD - 1)
 					else:
 						print('\n\033[1m' + 'You have set the stats already for the day.' + '\033[0m')
+					set_tracks(NOD - 1)
 
 			elif(today_stat.lower() == 'n'):
 				print('Good Day')
@@ -330,10 +513,10 @@ def menu():
 				if(NOD == 0):
 					print('\n\033[1m' + 'Congratulations, You\'ve completed your resolution successfully' + '\033[0m')
 					print('Now you can view your progress')
-					stats_build()
+					stats_build(threshold_data, activity_data)
 
 				else:
-					if(activity_data[0][activity_list[0]]['Date'] != DATE.strftime("%a, %d-%b-%Y")):
+					if(previous_record[list(previous_record)[0]]['Date'] != DATE.strftime("%a, %d-%b-%Y")):
 						set_tracks(NOD - 1)
 					else:
 						print('\n\033[1m' + 'You have set the stats already for the day.' + '\033[0m')
