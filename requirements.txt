@@ -3,3 +3,5 @@ colorama
 sys
 argparse
 json
+pyfiglet
+glob
