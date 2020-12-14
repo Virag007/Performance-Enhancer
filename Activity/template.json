@@ -1,14 +1,14 @@
 {
   "Parag": {
     "NumberOfDays": 0,
-    "PentesterLab": 0,
-    "HacktheBox": 0,
-    "Article": 0
+    "Date": 0,
+    "Time": 0,
+    "PentesterLab": 0
   },
   "Threshold": {
     "NumberOfDays": 0,
-    "PentesterLab": 0,
-    "HacktheBox": 0,
-    "Article": 0
+    "Date": 0,
+    "Time": 0,
+    "PentesterLab": 0
   }
 }

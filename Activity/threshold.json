@@ -1,8 +1,8 @@
 {
   "Threshold": {
-    "NumberOfDays": 30,
-    "PentesterLab": 10,
-    "HacktheBox": 1,
-    "Article": 2
+    "NumberOfDays": 18,
+    "Date": "Mon, 14-Dec-2020",
+    "Time": "13:09:04 pm",
+    "PentesterLab": 10
   }
 }

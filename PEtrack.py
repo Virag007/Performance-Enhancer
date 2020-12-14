@@ -499,7 +499,6 @@ def menu():
 						set_tracks(NOD - 1)
 					else:
 						print('\n\033[1m' + 'You have set the stats already for the day.' + '\033[0m')
-					set_tracks(NOD - 1)
 
 			elif(today_stat.lower() == 'n'):
 				print('Good Day')
