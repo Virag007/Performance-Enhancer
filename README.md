@@ -11,11 +11,14 @@ It is a self-competitive CLI tool that will enhance your performance by keeping 
 ## Platform Supported
 **Linux, Windows**
 
-## How to Use?
+## Installation
 
-**Step-01:** ```pip install -r requirements.txt``` or ```pip3 install -r requirements.txt```
+**Step-01:** ```git clone https://github.com/Virag007/Performance-Enhancer.git
+cd Performance-Enhancer```
 <br />
-**Step-02:** ```python3 PEtrack.py --help```
+**Step-02:** ```pip install -r requirements.txt``` or ```pip3 install -r requirements.txt```
+<br />
+**Step-03:** ```python3 PEtrack.py --help```
 
 ```
 usage: use "PEtrack.py --help" for more information
@@ -39,7 +42,7 @@ optional arguments:
 
 ``` 
 
-**Step-03:** ```python3 PEtrack.py```
+**Step-04:** ```python3 PEtrack.py```
 
 You have two options given either compete with yourself or with your friend. You need to add attributes name (i.e., your subject for which you want to set limit and track). After adding all the attribute name type **exit** and you'll out from the process.
 
@@ -53,18 +56,20 @@ You have two options given either compete with yourself or with your friend. You
 6. Ability to set the threshold to track everyday stats.
 7. At the end of the resolution day get every personalised details separately.
 
+## Contributions
+
+Your feedback and contributions will be much appreciated. :beers:
+
 ## Connect with me
 **Name: Parag (aka Virag)**
 <br />
 
 **Social Handles:** 
-<br />
-
-[<img align="left" alt="watercaterpillar.blogspot.com" width="22px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/globe.svg" />](https://watercaterpillar.blogspot.com/)
-[<img align="left" alt="@_virag007 | Twitter" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />](https://twitter.com/_virag007)
-[<img align="left" alt="parag0thakur | LinkedIn" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />](https://www.linkedin.com/in/parag0thakur/)
-[<img align="left" alt="v_ir_ag | Instagram" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg" />](https://www.instagram.com/v_ir_ag/)
-[<img align="left" alt="parag888 | Facebook" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/facebook.svg" />](https://www.facebook.com/parag888)
+[<img alt="watercaterpillar.blogspot.com" width="22px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/globe.svg" />](https://watercaterpillar.blogspot.com/)
+[<img alt="@_virag007 | Twitter" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />](https://twitter.com/_virag007)
+[<img alt="parag0thakur | LinkedIn" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />](https://www.linkedin.com/in/parag0thakur/)
+[<img alt="v_ir_ag | Instagram" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg" />](https://www.instagram.com/v_ir_ag/)
+[<img alt="parag888 | Facebook" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/facebook.svg" />](https://www.facebook.com/parag888)
 
 <br /><br />
 <img src="http://ForTheBadge.com/images/badges/made-with-python.svg" />
