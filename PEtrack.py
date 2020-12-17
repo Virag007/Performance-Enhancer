@@ -469,7 +469,10 @@ def menu():
 
 		except:
 			print(Style.RESET_ALL)
-			print('Enter only integer value')
+			print('\nEnter only integer value\nGood Day')
+
+		except KeyboardInterrupt:
+			print('\nForced Exit\nGood Day')
 
 	else:
 		threshold_data = fetch_threshold()
