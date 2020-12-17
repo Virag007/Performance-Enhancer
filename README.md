@@ -58,6 +58,8 @@ optional arguments:
 
 You have two options given either compete with yourself or with your friend. You need to add attributes name (i.e., your subject for which you want to set limit and track). After adding all the attribute name type **exit** and you'll out from the process.
 
+<br />
+
 ## Using Docker
 
 **Step-01:** Clone the github repo and traverse to the mentioned folder.
@@ -76,6 +78,7 @@ You have two options given either compete with yourself or with your friend. You
 <br />
 ```./startContainer.sh```
 
+<br />
 
 ## Features
 
@@ -87,9 +90,13 @@ You have two options given either compete with yourself or with your friend. You
 6. Ability to set the threshold to track everyday stats.
 7. At the end of the resolution day get every personalised details separately.
 
+<br />
+
 ## Contributions
 
-Your feedback and contributions will be much appreciated. :beers:
+Your feedback and contributions will be much appreciated. :beers::beers:
+
+<br />
 
 ## Connect with me
 **Name: Parag (aka Virag)**
