@@ -14,6 +14,9 @@ It is a self-competitive CLI tool that will enhance your performance by keeping 
 <img align="left" alt="Linux" width="64px" height="64px" src="https://github.com/Virag007/Performance-Enhancer/blob/main/media/windows.png" />
 
 <br />
+<br />
+<br />
+<br />
 
 ## Installation
 
