@@ -1,3 +1,6 @@
+<p align="center"><img alt="banner" src="https://github.com/Virag007/Performance-Enhancer/blob/main/media/banner.png" /></p>
+<br />
+
 # Performance Enhancer & Tracker (PET)
 
 [![Track](https://img.shields.io/badge/Track-Progress-%23ff4da6)](https://github.com/Virag007/Performance-Enhancer/releases)
