@@ -9,15 +9,16 @@
 It is a self-competitive CLI tool that will enhance your performance by keeping track of the threshold you set. You can also add your competitor with whom you want to compete. It will generate daily and monthly leaderboards as well. You can take a challenge of (say 30 days), set your threshold, and start tracking your daily progress. By the end of your resolution, you'll see a better you (mark it).
 
 ## Platform Supported
-**Linux, Windows**
+
+<img align="left" alt="Linux" width="64px" height="64px" src="https://github.com/Virag007/Performance-Enhancer/blob/main/media/linux.png" />
+<img align="left" alt="Linux" width="64px" height="64px" src="https://github.com/Virag007/Performance-Enhancer/blob/main/media/windows.png" />
 
 ## Installation
 
-**Step-01:** ```git clone https://github.com/Virag007/Performance-Enhancer.git
-cd Performance-Enhancer```
-<br />
+**Step-01:** ```git clone https://github.com/Virag007/Performance-Enhancer.git && cd Performance-Enhancer```
+<br /><br />
 **Step-02:** ```pip install -r requirements.txt``` or ```pip3 install -r requirements.txt```
-<br />
+<br /><br />
 **Step-03:** ```python3 PEtrack.py --help```
 
 ```
@@ -41,7 +42,7 @@ optional arguments:
   --version    Shows the version information and exit
 
 ``` 
-
+<br />
 **Step-04:** ```python3 PEtrack.py```
 
 You have two options given either compete with yourself or with your friend. You need to add attributes name (i.e., your subject for which you want to set limit and track). After adding all the attribute name type **exit** and you'll out from the process.
@@ -64,12 +65,12 @@ Your feedback and contributions will be much appreciated. :beers:
 **Name: Parag (aka Virag)**
 <br />
 
-**Social Handles:** 
+**Social Handles:** &nbsp;
 [<img alt="watercaterpillar.blogspot.com" width="22px" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/globe.svg" />](https://watercaterpillar.blogspot.com/)
 [<img alt="@_virag007 | Twitter" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />](https://twitter.com/_virag007)
 [<img alt="parag0thakur | LinkedIn" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />](https://www.linkedin.com/in/parag0thakur/)
 [<img alt="v_ir_ag | Instagram" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg" />](https://www.instagram.com/v_ir_ag/)
 [<img alt="parag888 | Facebook" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/facebook.svg" />](https://www.facebook.com/parag888)
 
-<br /><br />
+<br />
 <img src="http://ForTheBadge.com/images/badges/made-with-python.svg" />
