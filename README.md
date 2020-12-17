@@ -13,13 +13,21 @@ It is a self-competitive CLI tool that will enhance your performance by keeping 
 <img align="left" alt="Linux" width="64px" height="64px" src="https://github.com/Virag007/Performance-Enhancer/blob/main/media/linux.png" />
 <img align="left" alt="Linux" width="64px" height="64px" src="https://github.com/Virag007/Performance-Enhancer/blob/main/media/windows.png" />
 
+<br />
+
 ## Installation
 
-**Step-01:** ```git clone https://github.com/Virag007/Performance-Enhancer.git && cd Performance-Enhancer```
+**Step-01:** Clone the github repo and traverse to the mentioned folder.
+<br />
+```git clone https://github.com/Virag007/Performance-Enhancer.git && cd Performance-Enhancer```
 <br /><br />
-**Step-02:** ```pip install -r requirements.txt``` or ```pip3 install -r requirements.txt```
+**Step-02:** Install the required python library to smoothly run the tool.
+<br /> 
+```pip install -r requirements.txt``` or ```pip3 install -r requirements.txt```
 <br /><br />
-**Step-03:** ```python3 PEtrack.py --help```
+**Step-03:** View the usage
+<br />
+```python3 PEtrack.py --help```
 
 ```
 usage: use "PEtrack.py --help" for more information
@@ -42,10 +50,29 @@ optional arguments:
   --version    Shows the version information and exit
 
 ``` 
-<br />
+
 **Step-04:** ```python3 PEtrack.py```
 
 You have two options given either compete with yourself or with your friend. You need to add attributes name (i.e., your subject for which you want to set limit and track). After adding all the attribute name type **exit** and you'll out from the process.
+
+## Using Docker
+
+**Step-01:** Clone the github repo and traverse to the mentioned folder.
+<br />
+```git clone https://github.com/Virag007/Performance-Enhancer.git && cd ./Performance-Enhancer/DockerImage```
+<br /><br />
+**Step-02:** There are some script file to which you need to give execution permission.
+<br/>
+```chmod +x buildimage.sh startContainer.sh```
+<br /><br />
+**Step-03:** Run the buildimage.sh script to build your custom docker image of python3 from the context of DockerFile and create the container. All this will be done automatically by simply running the mentioned script file.
+<br />
+```./buildimage.sh```
+<br /><br />
+**Step-04:** Now your container is created and you may need to start the container in attach mode by simply executing the mentioned script.
+<br />
+```./startContainer.sh```
+
 
 ## Features
 
