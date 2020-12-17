@@ -467,7 +467,7 @@ def menu():
 					print('Enter right choice...')
 					break
 
-		except:
+		except ValueError:
 			print(Style.RESET_ALL)
 			print('\nEnter only integer value\nGood Day')
 
