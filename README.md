@@ -11,6 +11,10 @@
 
 It is a self-competitive CLI tool that will enhance your performance by keeping track of the threshold you set. You can also add your competitor with whom you want to compete. It will generate daily and monthly leaderboards as well. You can take a challenge of (say 30 days), set your threshold, and start tracking your daily progress. By the end of your resolution, you'll see a better you (mark it).
 
+## Demo
+
+<p align="center"><img src="https://github.com/Virag007/Performance-Enhancer/blob/main/media/demo.gif" alt="Demo" /></p>
+
 ## Platform Supported
 
 <img align="left" alt="Linux" width="64px" height="64px" src="https://github.com/Virag007/Performance-Enhancer/blob/main/media/linux.png" />
