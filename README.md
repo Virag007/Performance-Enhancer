@@ -14,15 +14,6 @@ It is a self-competitive CLI tool that will enhance your performance by keeping 
 ## Demo
 
 <p align="center"><img src="https://github.com/Virag007/Performance-Enhancer/blob/main/media/demo.gif" alt="Demo" /></p>
-
-## Platform Supported
-
-<img align="left" alt="Linux" width="64px" height="64px" src="https://github.com/Virag007/Performance-Enhancer/blob/main/media/linux.png" />
-<img align="left" alt="Linux" width="64px" height="64px" src="https://github.com/Virag007/Performance-Enhancer/blob/main/media/windows.png" />
-
-<br />
-<br />
-<br />
 <br />
 
 ## Installation
@@ -97,6 +88,16 @@ You have two options given either compete with yourself or with your friend. You
 6. Ability to set the threshold to track everyday stats.
 7. At the end of the resolution day get every personalised details separately.
 
+<br />
+
+## Platform Supported
+
+<img align="left" alt="Linux" width="64px" height="64px" src="https://github.com/Virag007/Performance-Enhancer/blob/main/media/linux.png" />
+<img align="left" alt="Linux" width="64px" height="64px" src="https://github.com/Virag007/Performance-Enhancer/blob/main/media/windows.png" />
+
+<br />
+<br />
+<br />
 <br />
 
 ## Contributions
