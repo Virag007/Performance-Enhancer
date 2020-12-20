@@ -1,3 +1,5 @@
+#!/bin/sh
+
 #Start the created container.
 #Note: Don't prune the container
 
