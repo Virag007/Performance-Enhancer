@@ -1,3 +1,0 @@
-*.sh linguist-detectable=true
-*.python linguist-detectable=true   
-*.json linguist-detectable=true 
